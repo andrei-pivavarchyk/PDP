@@ -1,0 +1,12 @@
+@isTest
+private class TestCallout {
+    @isTest static void test_method_one() {
+        HttpMockFactory mock = new HttpMockFactory(200, 'OK', 'I found it!', new Map<String,String>());
+        Test.setMock(HttpCalloutMock.class, mock);
+        String result;
+        Test.startTest();
+        result = CalloutService.callout();
+        Test.stopTest();
+        system.assertEquals('I found it!', result);
+    }
+}
