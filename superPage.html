@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+  
+  </body>
+
+<script>
+    var now = new Date();
+    var dateUTC= Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+
+    console.log('Date: '+ now );
+    console.log('DateUTC: '+new Date(dateUTC)  );
+    var Jan02_1970 = new Date(3600 * 24 * 1000);
+    console.log( 'Jan02_1970: '+ Jan02_1970 );
+
+// текущая дата
+var date = new Date();
+// час в текущей временной зоне
+console.log( date.getHours() );
+// час в зоне GMT+0
+console.log( date.getUTCHours() );
+//getTimezoneOffset()
+
+//BENCH
+
+var arr = [];
+for (var i = 0; i < 100; i++) arr[i] = 0;
+
+function walkIn(arr) {
+  for (var key in arr) arr[key]++;
+}
+
+function walkLength(arr) {
+  for (var i = 0; i < arr.length; i++) arr[i]++;
+}
+
+function bench(f) {
+  var date = new Date();
+  for (var i = 0; i < 100; i++) f(arr);
+  return new Date() - date;
+}
+
+// bench для каждого теста запустим много раз, чередуя
+var timeIn = 0,
+  timeLength = 0;
+for (var i = 0; i < 100; i++) {
+  timeIn += bench(walkIn);
+  timeLength += bench(walkLength);
+}
+
+alert( 'Время walkIn: ' + timeIn + 'мс' );
+alert( 'Время walkLength: ' + timeLength + 'мс' );
+
+//Another example
+var arr = [];
+for (var i = 0; i < 100; i++) arr[i] = 0;
+
+function walkIn(arr) {
+  for (var key in arr) arr[key]++;
+}
+
+function walkLength(arr) {
+  for (var i = 0; i < arr.length; i++) arr[i]++;
+}
+
+function bench(f) {
+  for (var i = 0; i < 1000; i++) f(arr);
+}
+
+console.time("All Benchmarks");
+console.time("walkIn");
+bench(walkIn);
+console.timeEnd("walkIn");
+console.time("walkLength");
+bench(walkLength);
+console.timeEnd("walkLength");
+console.timeEnd("All Benchmarks");
+
+//formatting 
+
+</script>
+  <style>
+</style>
+</html>
