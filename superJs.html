@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Super Js</title>
+ </head>
+ <body> 
+
+  <script>
+
+  var a = 5; // объявление var создаёт свойство window.a. Теперь это глобальная переменная
+  console.log( window.a ); // 5
+
+function sayHi(name) {
+  // LexicalEnvironment = { name: 'Вася', phrase: undefined }
+  var phrase = "Привет, " + name;
+
+  // LexicalEnvironment = { name: 'Вася', phrase: 'Привет, Вася'}
+  console.log( phrase );
+}
+
+sayHi('Вася');
+
+
+
+//Можно обсудить-----------------------
+function makeCounter() {
+  var currentCount = 1;
+
+  return function() {
+    return currentCount++;
+  };
+}
+
+var counter = makeCounter(); // [[Scope]] -> {currentCount: 1}
+
+alert( counter() ); // 1, [[Scope]] -> {currentCount: 1}
+alert( counter() ); // 2, [[Scope]] -> {currentCount: 2}
+alert( counter() ); // 3, [[Scope]] -> {currentCount: 3}
+//--------------------------------------
+//Можно обсудить-----------------------
+var a = 1;
+
+function getFunc() {
+  var a = 2;
+
+  var func = new Function('', 'alert(a)');
+
+  return func;
+}
+console.log(777);
+getFunc()(); // 1, из window
+//--------------------------------------
+  </script>
+
+ </body>
+</html>
