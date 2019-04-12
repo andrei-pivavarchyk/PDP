@@ -7,7 +7,7 @@
  <body> 
 
   <script>
-
+//ЗАМЫКАНИЯ
   var a = 5; // объявление var создаёт свойство window.a. Теперь это глобальная переменная
   console.log( window.a ); // 5
 
@@ -51,6 +51,58 @@ function getFunc() {
 console.log(777);
 getFunc()(); // 1, из window
 //--------------------------------------
+//КОНЕЦ ЗАМЫКАНИЯ
+
+//Полифил
+if (document.documentElement.firstElementChild === undefined) { // (1)
+
+  Object.defineProperty(Element.prototype, 'firstElementChild', { // (2)
+    get: function() {
+      var el = this.firstChild;
+      do {
+        if (el.nodeType === 1) {
+          return el;
+        }
+        el = el.nextSibling;
+      } while (el);
+
+      return null;
+    }
+  });
+
+//--------------------------------------
+  //<input type="radio">
+  //<input type="no-such-type">
+
+  alert( document.body.children[0].type ); // radio, поддерживается
+  alert( document.body.children[1].type ); // text, не поддерживается
+
+//--------------------------------------
+  Object.defineProperty(Element.prototype, 'lowerTag', {
+  get: function() {
+    return this.tagName.toLowerCase();
+  }
+});
+}
+  //КОНЕЦ полифила
+//Асинхронность
+//--------------------------------------
+
+const firstPromise = new Promise(function(resolve) {
+ return resolve("first");
+});
+const secondPromise = new Promise(function(resolve) {
+ resolve("second");
+});
+const doAllThings = firstPromise.then(function() {
+ return secondPromise;
+});
+doAllThings.then(function(result) {
+ console.log(result); // Выдаст: "second"
+}).catch((err) => {
+console.log(err);;
+});
+
   </script>
 
  </body>
