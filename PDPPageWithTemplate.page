@@ -1,0 +1,20 @@
+<apex:page controller="controllerForTemplate">
+ <apex:messages />
+    <apex:composition template="PDPTemplate">
+    
+    <apex:define name="firstName">
+        <apex:outputLabel value="Enter your firstName : " for="firstName"/>
+        <apex:inputText id="firstName" value="{!firstName}"/>
+    </apex:define>
+
+    <apex:define name="lastName">
+        <apex:outputLabel value="Enter your lastName : " for="lastName"/>
+        <apex:inputText id="lastName" value="{!lastName}"/>
+    </apex:define>
+
+    </apex:composition>
+    
+    <apex:outputText id="greeting" rendered="{!showGreeting}" value="Hello {!firstName} {!lastName}. 
+    Would you like some delicious {!mealField}?"/>
+</apex:page>
+             

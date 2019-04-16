@@ -1,0 +1,12 @@
+<apex:page controller="controllerForTemplate" >
+
+    <apex:form >
+        <apex:insert name="firstName" />
+        <br />
+        <apex:insert name="lastName" />
+        <br />      
+        <p>That's everything, right?</p>
+        <apex:commandButton action="{!save}" value="Save" id="saveButton"/>
+    </apex:form>
+
+</apex:page>
