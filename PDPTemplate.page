@@ -1,0 +1,12 @@
+<apex:page standardController="Account" contentType="application/text/csv">
+    <apex:pageBlock title="Contacts">
+        <apex:pageBlockTable value="{!account.Contacts}" var="contact">
+       Some fields we want to display in custom content type
+            <apex:column value="{!contact.Name}"/>
+            <apex:column value="{!contact.MailingCity}"/>
+            <apex:column value="{!contact.Phone}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
+
+http://www.iana.org/assignments/media-types/media-types.xhtml
