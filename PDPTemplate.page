@@ -5,7 +5,7 @@
         <br />
         <apex:insert name="lastName" />
         <br />      
-        <p>That's everything, right?</p>
+        <p>Enter your first and last name and look at your full name!!!</p>
         <apex:commandButton action="{!save}" value="Save" id="saveButton"/>
     </apex:form>
 
